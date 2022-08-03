@@ -1,55 +1,9 @@
 package sds.teste.teste.repository;
 
-import java.util.InputMismatchException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import sds.teste.teste.model.Produto;
 
-@Repository
-public class ProdutoRepository {
-
-    private List<Produto> produtos;
-    private long ultimoId;
-
-    public ProdutoRepository() {
-        produtos = new LinkedList<>();
-        ultimoId = 0;
-    }
-
-    public List<Produto> obiterTodos() {
-        return produtos;
-    }
-
-    public Optional<Produto> obiterPorId(long id) {
-        return produtos
-                .stream()
-                .filter(produto -> produto.getId() == id)
-                .findAny();
-    }
-
-    public synchronized Produto adicionar(final Produto produto) {
-        ultimoId++;
-        produtos.add(produto);
-        produto.setId(ultimoId);
-        return produto;
-    }
-
-    public void deletar(long id) {
-        produtos.removeIf(produto -> produto.getId() == id);
-    }
-
-    public Produto atualizar(Produto produto) {
-        final Optional<Produto> produtoEncontrado = obiterPorId(produto.getId());
-        if (produtoEncontrado.isEmpty()) {
-            throw new InputMismatchException("Produto não encontrado.");
-        }
-        deletar(produto.getId());
-        produtos.add(produto);
-        return produto;
-    }
+public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
 
 }

@@ -1,17 +1,6 @@
-package sds.teste.teste.model;
+package sds.teste.teste.view.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity //TRANSFORMA A CLASSE EM TABELA DO BANCO DE DADOS
-public class Produto {
-
-    //#region Atributos
-    @Id //INDICA QUE ESTE ATRIBUTO SE TRATA DE UM ID
-    @GeneratedValue(strategy = GenerationType.AUTO) //INDICA QUE ESSE ATRIBUTO É AUTO-INCREMENTÁVEL
-    private int id;
+public class ProdutoRequest {
 
     private String nome;
 
@@ -20,17 +9,8 @@ public class Produto {
     private double valor;
 
     private String observacao;
-    //#endregion
 
     //#region GETTERS e SETTERS
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
     }
